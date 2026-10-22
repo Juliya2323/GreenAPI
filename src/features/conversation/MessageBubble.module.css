@@ -1,0 +1,85 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2px 0;
+}
+
+.row[data-direction='outgoing'] {
+  align-items: flex-end;
+}
+
+.bubble {
+  position: relative;
+  max-width: min(560px, 78%);
+  padding: 7px 12px 6px;
+  border-radius: var(--radius-lg);
+  background: var(--bubble-incoming-bg);
+  box-shadow: var(--shadow-bubble);
+  animation: appear 0.16s ease-out;
+}
+
+.row[data-direction='incoming'] .bubble {
+  border-bottom-left-radius: 6px;
+}
+
+.row[data-direction='outgoing'] .bubble {
+  border-bottom-right-radius: 6px;
+  background: var(--bubble-outgoing-bg);
+}
+
+.bubble[data-status='failed'] {
+  outline: 1px solid rgb(229 72 77 / 45%);
+}
+
+.text {
+  display: inline;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Floats the meta to the bottom-right corner, like MAX does, without overlapping the last line. */
+.meta {
+  display: inline-flex;
+  float: right;
+  gap: 3px;
+  align-items: center;
+  margin: 6px 0 -2px 10px;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--bubble-meta);
+  user-select: none;
+}
+
+.status {
+  display: inline-flex;
+}
+
+.status[data-status='read'] {
+  color: var(--bubble-read);
+}
+
+.status[data-status='failed'] {
+  color: var(--color-danger);
+}
+
+.retry {
+  margin-top: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-danger);
+  font-size: 12px;
+}
+
+.retry:hover {
+  text-decoration: underline;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
